@@ -4,18 +4,23 @@ import {
   knowMembers,
   startOf,
   startMember,
-  unknownMessage,
+  addPhoto,
+  getPhotoById,
+  getRandomPhoto,
 } from "./commands";
 import { ids, commands } from "./messages";
+import { PrismaClient } from "@prisma/client";
 
 require("dotenv").config();
 
+const prisma = new PrismaClient();
 const bot = new TelegramBot(process.env.TOKEN!, { polling: true });
 
 // Pqo 854268019
 // Lyov 773894648
 // Aren 1180497571
 // Rudo 1667218206
+// Gor 1047907355
 
 bot.setMyCommands(Object.values(commands));
 
@@ -33,10 +38,20 @@ bot.on("message", async (msg: Message) => {
   if (!isOfel && !isMemberOfGachalka) return await startMember(bot, chatId);
 
   if (isMemberOfGachalka) {
-    if (message === commands.start.command) return await start(bot, chatId);
-    if (message === commands.knowMembers.command)
+    if (message === commands.start.command) {
+      return await start(bot, chatId);
+    }
+    if (message === commands.knowMembers.command) {
       return await knowMembers(bot, chatId);
-
-    return await unknownMessage(bot, chatId);
+    }
+    if (message === commands.addPhoto.command) {
+      return await addPhoto(bot, chatId, prisma);
+    }
+    if (message === commands.getPhotoById.command) {
+      return await getPhotoById(bot, chatId, prisma, message);
+    }
+    if (message === commands.getRandomPhoto.command) {
+      return await getRandomPhoto(bot, chatId, prisma);
+    }
   }
 });

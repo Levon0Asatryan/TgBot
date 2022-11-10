@@ -1,5 +1,5 @@
 export const ids = {
-  GachalkaIds: [854268019, 773894648, 1180497571, 1667218206],
+  GachalkaIds: [854268019, 773894648, 1180497571, 1667218206, 1047907355],
   OfelID: 1373225153,
 };
 
@@ -20,6 +20,11 @@ export const messages = {
     },
   },
   unknownMessage: "Я вас не понимаю",
+  addPhoto: "Отправьте мне фото которое хотите сохранить",
+  photoAdded: (id: number) => `Фото добавлено, фото id:${id}`,
+  getPhoto: "Отправьте id фото которое хотие",
+  photoNotExist: "Фото по такому id нет",
+  photoSended: "Фото отпрвлено",
 };
 
 export const callbackQueryEvents = {
@@ -40,5 +45,17 @@ export const commands = {
   knowMembers: {
     command: "/members",
     description: "узнать кто состоит в Гачалке",
+  },
+  addPhoto: {
+    command: "/addphoto",
+    description: "добавить фото",
+  },
+  getPhotoById: {
+    command: "/getphotobyid",
+    description: "получить фото по id",
+  },
+  getRandomPhoto: {
+    command: "/getrandomphoto",
+    description: "получить рандомное фото",
   },
 };

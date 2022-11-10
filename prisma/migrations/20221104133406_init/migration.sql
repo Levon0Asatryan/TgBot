@@ -1,0 +1,6 @@
+-- CreateTable
+CREATE TABLE "Image" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "img" TEXT NOT NULL
+);
